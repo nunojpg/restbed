@@ -11,7 +11,6 @@ set( VERSION "${restbed_VERSION}" )
 #
 # Build Options
 #
-option( BUILD_SHARED   "Build shared library."              OFF )
 option( BUILD_EXAMPLES "Build examples applications."       OFF )
 option( BUILD_TESTS    "Build all available test suites."   OFF )
 option( BUILD_SSL      "Build secure socket layer support."  ON )
@@ -48,9 +47,8 @@ add_library( ${PROJECT_NAME} ${MANIFEST} )
 
 target_include_directories( ${PROJECT_NAME} PUBLIC ${INCLUDE_DIR} )
 
-if ( BUILD_SHARED )
-    set_target_properties( ${PROJECT_NAME} PROPERTIES SOVERSION ${restbed_VERSION_MAJOR} VERSION ${restbed_VERSION} )
-endif ( )
+# Only used for Shared builds
+set_target_properties( ${PROJECT_NAME} PROPERTIES SOVERSION ${restbed_VERSION_MAJOR} VERSION ${restbed_VERSION} )
 
 if ( BUILD_SSL )
     target_link_libraries( ${PROJECT_NAME} LINK_PRIVATE ${ssl_LIBRARY} ${crypto_LIBRARY} )

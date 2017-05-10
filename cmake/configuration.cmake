@@ -10,7 +10,7 @@ if( NOT WIN32 )
     set( Yellow  "${Esc}[33m" )
 endif( )
 
-if ( BUILD_SHARED )
+if ( BUILD_SHARED ) # for backwards compability only
     set( BUILD_SHARED_LIBS ON )
 endif ( )
 
